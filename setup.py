@@ -25,7 +25,7 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
-if torch.has_cuda or getenv("IABN_FORCE_CUDA") == "1":
+if torch.cuda.is_available() or getenv("IABN_FORCE_CUDA") == "1":
     ext_modules = [
         CUDAExtension(
             name="inplace_abn._backend",

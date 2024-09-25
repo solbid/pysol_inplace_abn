@@ -1,3 +1,7 @@
+# Environments
+.env/
+.env*/
+
 # Compiled Object files
 *.slo
 *.lo
@@ -113,3 +117,5 @@ _ext
 # setuptools
 dist/
 *.egg-info
+.eggs/
+inplace_abn/_version.py

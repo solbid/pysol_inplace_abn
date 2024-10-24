@@ -30,6 +30,7 @@ with open(path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 if torch.cuda.is_available() or getenv("IABN_FORCE_CUDA") == "1":
+    print("Installing CUDAExtension!!!")
     ext_modules = [
         CUDAExtension(
             name="inplace_abn._backend",
@@ -48,6 +49,7 @@ if torch.cuda.is_available() or getenv("IABN_FORCE_CUDA") == "1":
         )
     ]
 else:
+    print("Installing CppExtension!!!")
     ext_modules = [
         CppExtension(
             name="inplace_abn._backend",

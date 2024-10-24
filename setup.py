@@ -5,6 +5,10 @@ from os import path, walk, getenv
 import setuptools
 import torch
 from torch.utils.cpp_extension import BuildExtension, CUDAExtension, CppExtension
+import numpy
+from pybind11 import get_include
+
+
 
 
 def find_sources(root_dir, with_cuda=True):
@@ -30,8 +34,16 @@ if torch.cuda.is_available() or getenv("IABN_FORCE_CUDA") == "1":
         CUDAExtension(
             name="inplace_abn._backend",
             sources=find_sources("src"),
-            extra_compile_args={"cxx": ["-O3"], "nvcc": []},
-            include_dirs=[path.join(here, "include")],
+            extra_compile_args={
+                "cxx": ["-O3"],
+                "nvcc": ["-arch=sm_86"],  # NVIDIA RTX A5500 has a Compute Capability of 8.6
+            },
+            # include_dirs=[path.join(here, "include")],
+            include_dirs=[
+                numpy.get_include(), # ensure that the correct NumPy headers are included
+                get_include(), # include the headers for Pybind11 in the C++ code during compilation
+                path.join(here, "include")
+            ],
             define_macros=[("WITH_CUDA", 1)],
         )
     ]
@@ -40,7 +52,7 @@ else:
         CppExtension(
             name="inplace_abn._backend",
             sources=find_sources("src", False),
-            extra_compile_args=["-O3"],
+            extra_compile_args=["-O3"], # , "-std=c++17"
             include_dirs=[path.join(here, "include")],
         )
     ]
@@ -60,6 +72,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.10",
     ],
     # Versioning
     use_scm_version={
@@ -70,6 +83,10 @@ setuptools.setup(
     # Requirements
     setup_requires=["setuptools_scm"],
     python_requires=">=3, <4",
+    install_requires=[
+        "numpy>=2",
+        "pybind11>=2.13.6",
+    ],
     # Package description
     packages=["inplace_abn"],
     ext_modules=ext_modules,

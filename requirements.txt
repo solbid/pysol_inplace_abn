@@ -1,9 +1,10 @@
+pybind11==2.13.6
 pillow
-numpy
+numpy==2.1.2
 setuptools
-tensorboardX
-torch
-torchvision
+tensorboardX==2.6.2.2
+torch==2.2.0
+torchvision==0.17.0
 
 # numpy == 1.22.0
 # setuptools == 70.0.0

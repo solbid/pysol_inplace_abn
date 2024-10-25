@@ -1,6 +1,6 @@
 pybind11==2.13.6
 numpy==1.22
-torch==2.0
+torch==2.2.0
 setuptools
 tensorboardX
 torchvision

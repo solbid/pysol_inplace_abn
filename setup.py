@@ -9,8 +9,6 @@ import numpy
 from pybind11 import get_include
 
 
-
-
 def find_sources(root_dir, with_cuda=True):
     extensions = [".cpp", ".cu"] if with_cuda else [".cpp"]
 
@@ -86,7 +84,7 @@ setuptools.setup(
     setup_requires=["setuptools_scm"],
     python_requires=">=3, <4",
     install_requires=[
-        "numpy>=2",
+        "numpy>=1.22",
         "pybind11>=2.13.6",
     ],
     # Package description

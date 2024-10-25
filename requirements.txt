@@ -5,6 +5,7 @@ setuptools
 tensorboardX==2.6.2.2
 torch==2.2.0
 torchvision==0.17.0
+pytest
 
 # numpy == 1.22.0
 # setuptools == 70.0.0

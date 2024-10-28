@@ -84,8 +84,9 @@ setuptools.setup(
     setup_requires=["setuptools_scm"],
     python_requires=">=3, <4",
     install_requires=[
-        "numpy>=1.22",
         "pybind11>=2.13.6",
+        "numpy>=1.22.0,<2.0.0",
+        "torch>=1.10.0,<1.13.0",
     ],
     # Package description
     packages=["inplace_abn"],

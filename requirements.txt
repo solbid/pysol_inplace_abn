@@ -1,7 +1,7 @@
 pybind11==2.13.6
-numpy==1.22
-torch==2.0.1
-setuptools
+numpy==1.22.0
+torch==1.4.0
+setuptools==70.0.0
 tensorboardX
 torchvision
 pytest

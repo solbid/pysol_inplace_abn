@@ -88,7 +88,8 @@ setuptools.setup(
     install_requires=[
         "pybind11>=2.13.6",
         "numpy>=1.22.0,<2.0.0",
-        "torch",
+        "torch>=1.10.0",
+        "torchvision>=0.11.1",
     ],
     # Package description
     packages=["inplace_abn"],
